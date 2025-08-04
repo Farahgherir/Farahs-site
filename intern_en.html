@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>internship Farah GHERIR</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    h1 {
+      color: #2e4b75;
+    }
+
+    svg {
+      background: #cce0ff;
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    .marker {
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .marker.hidden {
+      opacity: 0.3;
+    }
+
+    #info {
+      margin-top: 1.5rem;
+      color: #2e4b75;
+    }
+    svg {
+      background: #cce0ff;
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    .marker {
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    .marker.hidden {
+      opacity: 0.3;
+    }
+    #info {
+      margin-top: 1rem;
+      color: #2e4b75;
+    }
+</style>
+</head>
+
+<body>
+    <header>
+        <!-- Main title centered at the bottom of the banner -->
+        <div class="header-title">
+            <h1 class="site-title">International exp</h1> <!-- Centered title in English -->
+        </div>
+        <!-- Name "Farah GHERIR" at the top left -->
+        <div class="header-left">
+            <h2 class="name">Farah GHERIR</h2> <!-- Italic small name -->
+        </div>
+    
+        <!-- Menu with language logos on the left -->
+        <div class="header-right">
+            <div class="language-menu">
+                <a href="intern.html">
+                    <img src="fr.jpg" alt="French" class="language-logo">
+                </a>
+                <a href="intern_en.html">
+                    <img src="en.jpg" alt="English" class="language-logo">
+                </a>
+                <a href="intern_de.html">
+                    <img src="ge.jpg" alt="German" class="language-logo">
+                </a>
+            </div>
+
+    
+            <!-- Dropdown menu -->
+            <div class="menu">
+                <div class="menu-icon">☰</div> <!-- Menu icon -->
+                <ul class="menu-list">
+                    <li><a href="index_en.html">Main menu</a></li>
+                    <li><a href="projets_en.html">Projects</a></li>
+                    <li><a href="intern_en.html">International experiences</a></li>
+                    <li><a href="cv_en.html">CV</a></li>
+                    <li><a href="contact_en.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    
+    </header>
+
+    
+
+  <section id="intern" class="intern">
+    <div id="erasmus-globe-section"> <!-- ADDED -->
+      <div class="globe-container">
+        
+        <svg id="globe" viewBox="0 0 300 300"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink">
+          <circle cx="150" cy="150" r="100" fill="#2e4b75"  />
+
+          <image class="marker" data-country="germany" xlink:href="ge.jpg" width="50" height="40" />
+          <image class="marker" data-country="italy" xlink:href="it.jpg" width="50" height="40" />
+          <image class="marker" data-country="france" xlink:href="fr.jpg" width="50" height="40" />
+          <image class="marker" data-country="switzerland" xlink:href="sw.jpg" width="50" height="40" />
+        </svg>
+
+        
+
+      </div>
+      
+      <div class="info-container"> <!-- TEXT -->
+        <h2 id="country-name">Click on a flag</h2>
+        <p id="country-desc"></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+        <p>&copy; 2025 Farah GHERIR. All rights reserved.</p>
+  </footer>
+</body>
+
+  <script>
+  const R = 100;
+  const centerX = 150;
+  const centerY = 150;
+
+  const experiences = [
+    { 
+      id: 'germany', 
+      lat: 30, 
+      lon: 0, 
+      name: ' Germany ', 
+      description: "I did a 3-month school exchange in Germany, passed the Abitur, and it allowed me to learn conversational German." 
+    },
+    { 
+      id: 'italy', 
+      lat: -30, 
+      lon: 90, 
+      name: ' Italy ', 
+      description: "I did a 6-month Erasmus at Politecnico di Milano during my double master's degree. I mostly improved my English more than my Italian, but I discovered Italian culture." 
+    },
+    { 
+      id: 'france', 
+      lat: 30, 
+      lon: 180, 
+      name: ' France ', 
+      description: "French is my native language. I did all my studies in France and lived there." 
+    },
+    { 
+      id: 'switzerland', 
+      lat: -30, 
+      lon: -90, 
+      name: ' Switzerland ', 
+      description: "I did a 6-month internship in the German-speaking part of Switzerland, surrounded by beautiful mountainous landscapes." 
+    }
+  ];
+
+
+  function latLonToXYZ(lat, lon, radius) {
+    const latRad = lat * Math.PI / 180;
+    const lonRad = lon * Math.PI / 180;
+    const x = radius * Math.cos(latRad) * Math.cos(lonRad);
+    const y = radius * Math.sin(latRad);
+    const z = radius * Math.cos(latRad) * Math.sin(lonRad);
+    return { x, y, z };
+  }
+
+  function rotateY(point, angleDeg) {
+    const angleRad = angleDeg * Math.PI / 180;
+    const cosA = Math.cos(angleRad);
+    const sinA = Math.sin(angleRad);
+    return {
+      x: point.x * cosA + point.z * sinA,
+      y: point.y,
+      z: -point.x * sinA + point.z * cosA,
+    };
+  }
+
+  function project(point3D) {
+    return {
+      cx: centerX + point3D.x,
+      cy: centerY - point3D.y,
+    };
+  }
+
+  function updateMarkersPositions(angle) {
+    experiences.forEach((exp) => {
+      const marker = document.querySelector(`.marker[data-country="${exp.id}"]`);
+      const xyz = latLonToXYZ(exp.lat, exp.lon, R);
+      const rotated = rotateY(xyz, angle);
+      const pos2D = project(rotated);
+
+      if (marker.tagName.toLowerCase() === 'circle') {
+        marker.setAttribute('cx', pos2D.cx);
+        marker.setAttribute('cy', pos2D.cy);
+      } else if (marker.tagName.toLowerCase() === 'image') {
+        const w = parseFloat(marker.getAttribute('width'));
+        const h = parseFloat(marker.getAttribute('height'));
+        marker.setAttribute('x', pos2D.cx - w / 2);
+        marker.setAttribute('y', pos2D.cy - h / 2);
+      }
+
+      if (rotated.z < 0) {
+        marker.classList.add('hidden');
+      } else {
+        marker.classList.remove('hidden');
+      }
+    });
+  }
+
+  let rotation = 0;
+  const normalSpeed = 0.1;  // slow rotation
+  const fastSpeed = 5;      // fast rotation
+  let currentSpeed = normalSpeed;
+
+  let targetCountry = null;  // country to rotate quickly towards
+  let stopTimeout = null;    // timer for 3s pause
+
+  function animate() {
+    if (targetCountry) {
+      const exp = experiences.find(e => e.id === targetCountry);
+      if (exp) {
+        const desiredAngle = (exp.lon - 90 + 360) % 360;
+
+        let diff = (desiredAngle - rotation + 360) % 360;
+        if (diff > 180) diff -= 360;
+
+        if (Math.abs(diff) <= currentSpeed) {
+          rotation = desiredAngle;
+          currentSpeed = 0;
+
+          if (!stopTimeout) {
+            stopTimeout = setTimeout(() => {
+              currentSpeed = normalSpeed;
+              targetCountry = null;
+              stopTimeout = null;
+            }, 1000);
+          }
+        } else {
+          rotation = (rotation + Math.sign(diff) * currentSpeed + 360) % 360;
+        }
+      }
+    } else {
+      rotation = (rotation + currentSpeed) % 360;
+    }
+
+    updateMarkersPositions(rotation);
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  const countryNameEl = document.getElementById('country-name');
+  const countryDescEl = document.getElementById('country-desc');
+
+  document.querySelectorAll('.marker').forEach(marker => {
+    marker.addEventListener('click', () => {
+      const countryId = marker.dataset.country;
+      const exp = experiences.find(e => e.id === countryId);
+      if (exp) {
+        countryNameEl.innerHTML = exp.name;
+        countryDescEl.textContent = exp.description;
+
+        targetCountry = countryId;
+        currentSpeed = fastSpeed;
+
+        if (stopTimeout) {
+          clearTimeout(stopTimeout);
+          stopTimeout = null;
+        }
+      }
+    });
+  });
+</script>

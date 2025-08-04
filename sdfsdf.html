@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Globe 3D avec drapeaux et info au clic</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 2rem;
+    background: #f0f4f8;
+  }
+  svg {
+    background: #cce0ff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+  .marker {
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  .marker.hidden {
+    opacity: 0.3;
+  }
+  #info {
+    margin-top: 1rem;
+    color: #2e4b75;
+  }
+</style>
+</head>
+<body>
+
+<h1>Globe 3D avec images de drapeaux</h1>
+
+<svg id="globe" width="300" height="300" viewBox="0 0 300 300"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+  <circle cx="150" cy="150" r="100" fill="#2e4b75" />
+  
+  <image class="marker" data-country="germany" xlink:href="ge.jpg" width="30" height="20" />
+  <circle class="marker" data-country="italy" r="8" fill="#ff5722" stroke="#fff" stroke-width="1" />
+  <image class="marker" data-country="france" xlink:href="fr.jpg" width="30" height="20" />
+  <image class="marker" data-country="switzerland" xlink:href="en.jpg" width="30" height="20" />
+</svg>
+
+<div id="info">
+  <h2 id="country-name">Cliquez sur un drapeau</h2>
+  <p id="country-desc"></p>
+</div>
+
+<script>
+  const R = 100;
+  const centerX = 150;
+  const centerY = 150;
+
+  const experiences = [
+    { id: 'germany', lat: 30, lon: 0, name: 'Allemagne', description: "J'ai vécu en Allemagne pendant un semestre." },
+    { id: 'italy', lat: -30, lon: 90, name: 'Italie', description: "Mon séjour en Italie m'a permis de découvrir la langue et la culture italienne." },
+    { id: 'france', lat: 30, lon: 180, name: 'France', description: "En France, j'ai approfondi ma maîtrise du français tout en étudiant à Paris." },
+    { id: 'switzerland', lat: -30, lon: -90, name: 'Suisse', description: "J'ai eu la chance d'étudier et de travailler en Suisse." }
+  ];
+
+  function latLonToXYZ(lat, lon, radius) {
+    const latRad = lat * Math.PI / 180;
+    const lonRad = lon * Math.PI / 180;
+    const x = radius * Math.cos(latRad) * Math.cos(lonRad);
+    const y = radius * Math.sin(latRad);
+    const z = radius * Math.cos(latRad) * Math.sin(lonRad);
+    return { x, y, z };
+  }
+
+  function rotateY(point, angleDeg) {
+    const angleRad = angleDeg * Math.PI / 180;
+    const cosA = Math.cos(angleRad);
+    const sinA = Math.sin(angleRad);
+    return {
+      x: point.x * cosA + point.z * sinA,
+      y: point.y,
+      z: -point.x * sinA + point.z * cosA,
+    };
+  }
+
+  function project(point3D) {
+    return {
+      cx: centerX + point3D.x,
+      cy: centerY - point3D.y,
+    };
+  }
+
+  function updateMarkersPositions(angle) {
+    
+    experiences.forEach((exp, i) => {
+      const marker = document.querySelector(`.marker[data-country="${exp.id}"]`);
+      const xyz = latLonToXYZ(exp.lat, exp.lon, R);
+      const rotated = rotateY(xyz, angle);
+      const pos2D = project(rotated);
+
+      if (marker.tagName.toLowerCase() === 'circle') {
+        marker.setAttribute('cx', pos2D.cx);
+        marker.setAttribute('cy', pos2D.cy);
+      } else if (marker.tagName.toLowerCase() === 'image') {
+        const w = parseFloat(marker.getAttribute('width'));
+        const h = parseFloat(marker.getAttribute('height'));
+        marker.setAttribute('x', pos2D.cx - w / 2);
+        marker.setAttribute('y', pos2D.cy - h / 2);
+      }
+
+      if (rotated.z < 0) {
+        marker.classList.add('hidden');
+      } else {
+        marker.classList.remove('hidden');
+      }
+    });
+  }
+
+  let rotation = 0;
+
+  function animate() {
+    rotation = (rotation + 0.1) % 360;  // vitesse lente
+    updateMarkersPositions(rotation);
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  // Gestion clic pour afficher infos
+  const countryNameEl = document.getElementById('country-name');
+  const countryDescEl = document.getElementById('country-desc');
+
+  document.querySelectorAll('.marker').forEach(marker => {
+    marker.addEventListener('click', () => {
+      const countryId = marker.dataset.country;
+      const exp = experiences.find(e => e.id === countryId);
+      if (exp) {
+        countryNameEl.textContent = exp.name;
+        countryDescEl.textContent = exp.description;
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

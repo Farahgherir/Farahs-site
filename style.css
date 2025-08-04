@@ -1,0 +1,1296 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+
+
+footer {
+  flex-shrink: 0;
+  height: 15px;           /* hauteur fixe */
+  background-color: #000000;
+  color: white;
+  width: 100vw;
+  
+  display: flex;          /* active flexbox */
+  justify-content: center; /* centre horizontalement */
+  align-items: center;    /* centre verticalement */
+  font-size: 0.6rem;
+  box-sizing: border-box;
+  padding: 0 1rem;        /* un peu de padding horizontal */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f4f8; /* ou #3b6895 selon ce que tu préfères */
+  margin: 0;
+  padding: 0; /* pas de padding ici ! */
+  text-align: center;
+}
+
+
+
+/* Header */
+header {
+  width: 100vw;
+  min-height: 60px;
+  padding: 10px 0;
+  background: linear-gradient(90deg, #2e4b75, #3e6381);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+
+
+
+
+
+
+/* Titre principal centré */
+.header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: auto;
+}
+
+.site-title {
+  font-size: 3vh; /* font-size en fonction de la hauteur viewport, ajustable */
+  font-weight: bold;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 0.3em 1em;
+  border-radius: 1em;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  color: rgb(255, 255, 255);
+  height: 80%;
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* Bloc à gauche */
+.header-left {
+    position: absolute;
+    left: 1vw; /* ou autre marge gauche */
+    display: flex;
+    align-items: center;
+    height: 100%; /* pour centrer verticalement dans le header */
+}
+
+.header-left .name {
+    font-size: 1vw;
+    font-style: italic;
+    color: #f4f4f9;
+    margin: 0;
+}
+
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.menu-list {
+    display: none;                    /* Le menu est caché par défaut */
+    position: absolute;              /* Positionné par rapport à son parent positionné */
+    top: 2.5vw;                     /* Décalage vertical depuis le haut */
+    right: 0;                       /* Aligné à droite */
+    background-color: #ffffff;      /* Fond blanc */
+    list-style: none;               /* Pas de puces pour la liste */
+    padding: 0;                    /* Pas de padding intérieur */
+    margin: 0;                     /* Pas de marge extérieure */
+    border-radius: 8px;             /* Bords arrondis */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Ombre douce portée */
+    min-width: 180px;               /* Largeur minimum 180px */
+    border: 1px solid #ddd;         /* Bordure grise claire */
+    width: clamp(150px, 20vw, 300px);
+}
+
+
+/* Chaque élément du menu a une ligne séparée */
+.menu-list li {
+    border-bottom: 1px solid #eee;
+}
+
+/* Supprime le trait de séparation du dernier élément */
+.menu-list li:last-child {
+    border-bottom: none;
+}
+
+/* Lien de chaque item */
+.menu-list li a {
+    display: block;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 1.5vw;
+}
+
+/* Effet au survol */
+.menu-list li a:hover {
+    background-color: #f0f8ff; /* bleu très clair */
+    color: #0077cc;
+}
+
+/* Affiche le menu au survol de l'icône */
+.menu:hover .menu-list {
+    display: block;
+}
+
+
+
+
+/* Section Présentation - principale */
+#presentation {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 80px;
+    padding: 4vw;
+    
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    font-family: 'Arial', sans-serif;
+    color: #2c3e50;
+}
+
+
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.site-title {
+  animation: fadeInDown 1s ease forwards;
+}
+
+
+.image-container {
+    margin-right: 1vw; /* Réduit l'espacement entre l'image et le texte */
+    position: relative;
+    padding: 0.5vw; /* Réduit l'espacement autour de l'image */
+}
+
+@keyframes floatUpDown {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px); /* Monte légèrement */
+    }
+}
+
+.photo {
+    width: 20vw;
+    height: 20vw;
+    object-fit: cover;
+}
+
+
+.description {
+    text-align: left; /* Alignement du texte à gauche */
+}
+
+.description h3 {
+    font-size: 3vw; /* Taille du titre */
+    margin: 0;
+}
+
+.description p {
+    font-size: 2vw; /* Taille du texte */
+    color: #533f6f; /* Couleur du texte */
+    margin-top: 10px;
+}
+
+/* Sections */
+section {
+    padding: 20px;
+    margin: 20px;
+}
+
+/* Conteneur principal blanc */
+.main-container {
+  display: flex;
+  background-color: white;
+  height: calc(100vh - 5vw - 15px); /* hauteur écran moins header et footer (tu peux ajuster) */
+  margin-top: 5vw; /* laisse de la place pour le header fixé */
+  padding: 2vw;
+  box-sizing: border-box;
+  gap: 2vw;
+}
+
+/* Ton header déjà fixé donc on laisse la place */
+main {
+  flex: 1;
+  margin-top: 5vw; /* place pour header */
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.white-rectangle {
+  background-color: white;
+  width: 90vw;
+  height: 80vh;
+  display: flex;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* ombre plus grande et douce */
+  border-radius: 12px;
+  margin-bottom: 8vh;
+  margin-top: -6vh; /* remonte le rectangle */
+}
+
+
+
+.left-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* centre verticalement le contenu */
+  width: 30vw;
+  background-color: #f0f0f0;
+  padding: 1.5vw;
+  box-sizing: border-box;
+}
+
+
+.left-image .photo {
+  width: 80%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 0; /* aucun espace sous l’image */
+}
+
+.handwritten-text {
+  position: relative;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1.5vw;
+  color: #1c174e;
+  margin-top: 6px;
+  text-align: center;
+  padding: 6px 12px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+
+
+
+
+/* Partie droite en grille 2x2 */
+.right-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1.5vw;
+  padding: 2vw;
+  box-sizing: border-box;
+  overflow-y: auto;
+  
+}
+
+/* Blocs droite */
+.right-grid > div {
+  background-color: #f9f9f9;
+  padding: 1.5vw;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* ombre plus grande et douce */
+  overflow-y: auto;
+  font-size: clamp(1rem, 1vw + 1vh, 2rem);
+
+}
+
+
+.top-left.description p {
+  font-size: clamp(1rem, 1vw + 1vh, 2rem);
+  color: #27216c;
+}
+
+
+.top-left.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centre verticalement */
+  align-items: center;     /* centre horizontalement */
+  height: 100%;
+  box-sizing: border-box;
+  padding: 1.5vw;
+  text-align: center;
+}
+
+
+/* Responsive - petit écran */
+@media (max-width: 600px) {
+  .white-rectangle {
+    flex-direction: column;
+    width: 95vw;
+    height: auto;
+  }
+  
+  .left-image {
+    width: 100%;
+    padding: 1vw 2vw 2vw 2vw;
+  }
+  .left-image .photo {
+    width: 50%;  /* réduit la taille à 50% du conteneur sur petits écrans */
+  }
+  .right-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 1.5vw;
+    padding: 1vw 2vw 2vw 2vw;
+  }
+}
+
+
+.top-right.task {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5vw;
+  box-sizing: border-box;
+  font-style: italic; /* italique pour tout le contenu */
+  text-align: left;
+}
+
+.top-right.task h2 {
+  font-size: clamp(1rem, 1vw + 1vh, 2rem);
+  color: #27216c;
+  font-style: normal; /* titre en normal (pas italique) */
+  margin-bottom: 0.8rem;
+}
+
+.top-right.task ul {
+  flex-grow: 1;
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  font-size: 1.5vw;
+  overflow-y: auto; /* scroll vertical si dépassement */
+  line-height: 1.2; /* moins d’espace entre les lignes */
+}
+
+.top-right.task ul li {
+  position: relative;
+  padding-left: 2.5em; /* espace en em */
+  margin-bottom: 0.5em;
+  font-size: 1.2vw;
+}
+
+.top-right.task ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0.5em; /* espace en em */
+  top: 50%;
+  transform: translateY(-50%);
+  color: green;
+  font-size: 1.2em;
+  font-weight: normal;
+  line-height: 1;
+}
+
+
+
+
+
+.skills {
+  margin-top: 1.5vw;
+  width: 100%;
+  max-height: 60%;
+  overflow-y: auto; /* Scroll vertical si contenu trop grand */
+  padding-right: 0.5vw; /* Évite que la scrollbar recouvre le texte */
+  box-sizing: content-box;
+}
+
+.skill span {
+  display: block;
+  font-weight: 600;
+  color: #533f6f;
+  margin-bottom: 0.5vw;
+  font-size: 1vw; /* taille de texte fixe */
+}
+
+.progress-bar {
+  background-color: #ddd;
+  border-radius: 5px;
+  height: 0.6vw; /* barre plus fine */
+  width: 100%;
+  overflow: hidden;
+}
+
+.skills .skill span {
+  display: block;      /* pour que le span prenne toute la largeur */
+  text-align: left;    /* texte aligné à gauche */
+  margin-bottom: 0.5rem; /* optionnel, pour un peu d’espace */
+}
+
+
+.progress {
+  background-color: #27216c; /* Couleur violette */
+  height: 100%;
+  border-radius: 10px 0 0 10px;
+  width: 0;
+  transition: width 1.5s ease-in-out;
+}
+
+.bottom-left.about-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* aligne en haut */
+  height: 100%;
+  padding-top: 0.5vw; /* enlever padding en haut */
+  padding-bottom: 1.5vw;
+  box-sizing: border-box;
+  color: #27216c;
+}
+
+.bottom-left.about-left h4 {
+  margin-top: 0;    /* pas de marge au-dessus */
+  margin-bottom: 0.5vw; /* petit espace sous le titre */
+}
+
+.bottom-right.about-right p {
+  font-size: clamp(1rem, 1vw + 1vh, 2rem);
+  color: #27216c;
+}
+
+.bottom-right.about-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centre verticalement */
+  align-items: center;     /* centre horizontalement */
+  height: 100%;
+  box-sizing: border-box;
+  padding: 1.5vw;
+  text-align: center;
+}
+
+.bounce {
+  display: inline-block;
+  animation: bounce 1.2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(4px);
+  }
+}
+
+
+
+
+/* ///////////////////////////////////////////// PROJETS ////////////////////////////////// */
+
+
+/* Style pour la section des projets */
+#projets {
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-top: 2vw;
+    padding: 4vw;
+    
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    font-family: 'Arial', sans-serif;
+    color: #2c3e50;
+    
+}
+
+#projets:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.projet {
+    margin-bottom: 30px;
+    padding: 2vw;
+    background-color: #f4f3f8;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-left h1 {
+    font-size: 0.7vw;
+    font-style: italic;
+    color: #f4f4f9;
+    margin: 0;
+}
+
+.projet h3 {
+    font-size: 1.7vw;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+
+.projet h4 {
+  font-size: 1.3vw;
+  margin-top: 20px;
+  font-style: italic;
+  text-decoration: underline; /* soulignement */
+  text-align: left;
+}
+
+
+.projet p {
+    font-size: 1.3vw;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+}
+
+
+
+.projet ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.projet ul li {
+    font-size: 1.3vw;
+    margin-bottom: 10px;
+    font-style:italic;
+    color: #42447e; /* bordeaux */
+}
+
+.date-projet {
+    font-style: italic;
+    font-size: 1.7vw;
+    color: #000000; /* bordeaux */
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0.3em 1em;
+    color: #000000; /* bordeaux */
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    
+    width: fit-content;
+    margin: 0 auto 1em auto; /* Centré + espace en bas */
+    text-align: center;
+}
+
+
+#projets h2 {
+    font-size: 1.5vw;
+    font-weight: 700;
+    color: #2e4b75;
+    margin-bottom: 1rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid #f3f5f9;
+    border-radius: 8px;
+    background-color: #f3f5f9;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+.project-media-container {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end; /* pour aligner les enfants en bas */
+    gap: 0;
+    margin: 2vw 8vw;
+}
+
+.project-image-container2 {
+    text-align: center; /* centre tout le contenu */
+}
+
+.image-description {
+    display: inline-block; /* pour que la largeur soit uniquement celle du texte */
+    text-align: center;
+    font-style: italic;
+    color: #666666;
+    margin-top: 0.5rem;
+}
+
+
+
+.project-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+
+.steps-container {
+  flex-grow: 1;            /* prend tout l'espace dispo */
+  max-width: 65%;          /* max largeur texte */
+  min-width: 250px;        /* taille mini du texte */
+}
+
+.project-video-container {
+  width: 1vw;         /* largeur relative à la fenêtre */
+  margin: 0 auto;      /* pour centrer le container */
+  flex-shrink: 0;      /* pour éviter que ça rétrécisse trop dans un flex */
+}
+
+.project-video-container video {
+  width: 100%;         /* la vidéo prend toute la largeur du container */
+  height: auto;        /* hauteur automatique pour garder les proportions */
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: block;      /* évite les petits espaces en bas */
+}
+
+
+.project-image-container2 img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.steps-list {
+    list-style-type: none; /* Supprime les puces par défaut */
+    padding-left: 0;       /* Enlève le retrait à gauche */
+    margin-left: 2vw;        /* Optionnel, enlève la marge à gauche */
+    text-align: left; /* aligne le texte à gauche */
+}
+
+
+
+
+.project-link {
+    display: inline; /* Cela fait que le lien et le texte soient sur la même ligne */
+    margin-left: 5px; /* Ajoute un léger espace entre "Site du projet" et le lien */
+}
+
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10vw; /* 5vw de chaque côté */
+    margin-top: 4vw; /* espace au-dessus de la vidéo */
+    box-sizing: border-box; /* pour que le padding soit pris en compte dans la largeur totale */
+}
+
+.video-container video {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.project-video-wrapper {
+  max-width: 170px;   /* max-width très petite = limite la vidéo à 100px max */
+  width: 80vw;        /* largeur relative à 80% de la fenêtre */
+  margin: 1rem auto;
+  text-align: center;
+}
+
+
+.project-video-wrapper video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+
+.interests-list li {
+  text-align: left;
+}
+
+
+
+
+
+/* ///////////////////////////////////////////// CV ///////////////////////////////////////// */
+
+
+/* CV container */
+#cv {
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-top: 2vw;
+    padding: 4vw;
+    
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    font-family: 'Arial', sans-serif;
+    color: #2c3e50;
+}
+
+#cv:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+.cv-header {
+    text-align: center;
+}
+
+.cv-header h2 {
+    font-size: 2vw;
+    font-weight: 700;
+    color: #2e4b75;
+    margin-bottom: 1rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid #1a2a40;
+    border-radius: 8px;
+    background-color: #f3f5f9;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+.cv-header a:hover {
+    color: #1c5980;
+}
+
+/* Section subtitles */
+.cv-content h3 {
+  font-size: 1.2vw;
+  font-weight: 600;
+  color: #1a2a40;
+  border-bottom: 2px solid #2980b9;
+  padding-bottom: 0.25rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  text-align: left;
+  animation: bounceUpDown 3s ease-in-out infinite;
+}
+
+@keyframes bounceUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+
+
+.cv-content p {
+    font-size: 1.2vw;
+    font-weight: 600;
+}
+
+/* Lists styling */
+.cv-content ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.cv-content ul li {
+    font-size: 1.2vw;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+    color: #34495e;
+}
+
+.skills-list {
+    list-style-type: none !important; /* force la suppression des puces */
+    padding-left: 0;
+    margin-left: 0;
+    
+}
+
+
+.skills-list li {
+    position: relative;
+    padding-left: 1.8em;
+    margin-bottom: 0.5em;
+}
+
+.skills-list li::before {
+    content: "✔";       /* tick */
+    position: absolute;
+    left: 0;
+    color: #27ae60;     /* vert */
+    font-weight: bold;
+}
+
+
+
+
+
+.languages-section {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.languages-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto 15vw 10vw; /* Drapeau | barre | label */
+    gap: 1rem;
+    align-items: center; /* centre chaque <li> */
+}
+
+.languages-list li {
+    display: contents
+}
+
+.language-flag {
+    width: 3vw;
+    max-width: 36px;
+    height: auto;
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.1);
+    justify-self: start;
+}
+
+.language-bar {
+    width: 15vw;
+    max-width: 500px;
+    height: 0.7vw;
+    max-height: 20px;
+    background-color: #e0e6ed;
+    border-radius: 10px;
+    overflow: hidden;
+    justify-self: start;
+}
+
+.language-level {
+    height: 100%;
+    background-color: #2e4b75;
+    border-radius: 10px 0 0 10px;
+}
+
+.language-label {
+    font-size: 1.2vw;
+    color: #5d5f5e;
+    font-style: italic;
+    white-space: nowrap;
+    justify-self: start;
+}
+
+
+
+
+
+/* Each CV item spacing and border */
+.cv-item {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e0e6ed;
+    font-size : 1.2vw
+}
+
+/* Title and company on one line with spacing */
+.cv-item > div > strong {
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+/* Date aligned right, italic, smaller and subtle */
+.cv-item p {
+    text-align: right;
+    font-style: italic;
+    font-size: 1.2vw;
+    margin-top: 0.25rem;
+    color: #63b27b;
+}
+
+.cv-item .mobility {
+  text-align: left;
+}
+
+
+.cv-download-btn {
+    display: block;         /* pour qu'il prenne toute la ligne */
+    width: max-content;     /* largeur ajustée au texte */
+    margin: 2rem auto 0;    /* marge en haut et centré horizontalement */
+    padding: 0.5em 1.5em;
+    font-size: 2vw;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(90deg, #2e4b75, #698aa5);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgb(255, 255, 255);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+
+.cv-download-btn:hover {
+    background: linear-gradient(135deg, #554fda, #7b6adf);
+    box-shadow: 0 8px 16px rgba(85, 79, 218, 0.5);
+    border-color: #4b45c1;
+    transform: translateY(-2px);
+}
+
+
+
+@keyframes subtle-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  75% {
+    transform: translateY(3px);
+  }
+}
+
+.experience-details {
+    background-color: #ffffff;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 
+        0 4px 6px rgba(46, 75, 117, 0.15),
+        0 10px 20px rgba(46, 75, 117, 0.1),
+        inset 0 -2px 6px rgba(255, 255, 255, 0.4);
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    list-style-type: disc;
+    color: #2c3e50;
+
+    animation: subtle-bounce 5s ease-in-out infinite;
+}
+
+
+.skills-list li {
+  text-align: left;
+}
+
+.cv-content ul li {
+  text-align: left;
+}
+
+
+
+/* ///////////////////////////////////////////// LOGO LANGUE ////////////////////////////////// */
+
+
+
+/* Logo de langue à droite */
+.header-right {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    position: absolute;
+    top: 50%; /* Centre verticalement */
+    transform: translateY(-50%); /* Ajuste pour être exactement au centre */
+    right: 2vw; /* Collé au bord droit */
+}
+
+
+.language-menu {
+    display: flex;
+    gap: 15px; /* Espace entre les logos */
+    align-items: center;
+}
+
+.language-logo {
+    width: 2vw;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.language-logo:hover {
+    transform: scale(1.2); /* Effet zoom au survol */
+}
+
+
+
+
+/* ///////////////////////////////////////////// CONTACT ////////////////////////////////// */
+
+
+/* Style général pour la page Contact */
+
+#contact {
+  display: flex;
+  flex-direction: column; /* Pour que le contenu soit en colonne */
+  justify-content: center; /* Centre verticalement */
+  align-items: center;     /* Centre horizontalement */
+  text-align: center;      /* Centre le texte à l'intérieur */
+  
+  /* Garde tes styles actuels */
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: -3vw;
+  padding: 4vw;
+
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  font-family: 'Arial', sans-serif;
+  color: #000;
+  min-height: calc(100vh - 80px - 5vw);
+  box-sizing: border-box;
+}
+
+
+#contact:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Style pour le titre "Contact" */
+#contact h2 {
+    font-size: 2.5vw;
+    font-weight: 700;
+    color: #2e4b75;
+    margin-bottom: 1rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid #1a2a40;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    margin-left: auto;
+    margin-right: auto;
+    font-style: italic;  
+}
+
+/* Style pour la description sous le titre */
+#contact p {
+    font-size: 2vw;
+    color: #4b5d67;
+    margin-bottom: 2vw;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+/* Liste des contacts */
+#contact ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Style des éléments de la liste */
+#contact ul li {
+    font-size: 1.5vw;
+    margin-bottom: 18px;
+    line-height: 1.8;
+    position: relative;
+    padding-left: 28px;
+    color: #33475b;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+
+/* Style pour les liens dans la section Contact */
+#contact a {
+    color: #3a8dff;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+#contact a:hover {
+    color: #0c57b7;
+    border-bottom: 2px solid #0c57b7;
+    text-decoration: none;
+}
+
+/* Style pour les éléments forts (labels, titres) */
+#contact li strong {
+    font-weight: 700;
+    color: #1a2a6c;
+}
+
+
+
+
+
+/* ///////////////////////////////////////////// ERASMUS ////////////////////////////////// */
+
+#intern {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-top: 2.5vw;
+  padding: 4vw;
+
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  font-family: 'Arial', sans-serif;
+  color: #000;
+
+  min-height: calc(100vh - 80px - 5vw);
+  box-sizing: border-box;
+
+  display: flex;              /* ← ajoute ceci */
+  flex-direction: column;     /* ← garde l'empilement vertical */
+  justify-content: center;    /* ← centre verticalement le contenu */
+}
+
+
+#erasmus-globe-section {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%; /* ← Ajoute cette ligne */
+}
+
+
+.globe-container, .info-container {
+  flex: 1 1 50%;
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  align-items: center;    /* centre verticalement */
+  box-sizing: border-box;
+}
+
+.info-container {
+  background-color: #f0f4ff; /* fond bleu clair */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 1.5rem 2rem;
+  max-width: 80%;
+  margin: 0 auto;
+  color: #2e3a59;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+}
+
+
+
+/* Responsive : globe au-dessus, texte en-dessous */
+@media (max-width: 768px) {
+  #erasmus-globe-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .globe-container, .info-container {
+    flex: none;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .info-container {
+    align-items: center;
+    padding-top: 0;
+  }
+}
+
+#globe {
+  width: 50vw;  /* largeur = 50% de la largeur de la fenêtre */
+  height: auto; /* la hauteur s'ajuste pour garder le ratio */
+  max-width: 300px; /* optionnel, limite max */
+  max-height: 300px; /* optionnel */
+}
+
+
+
+
+.globe-container {
+  flex-shrink: 0;
+  width: 300px;
+  height: 300px;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.controls button {
+  background-color: #2e4b75;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  background-color: #1a2a40;
+}
+
+
+/* Nom en gras et italique */
+#country-name {
+  font-weight: bold;
+  font-style: italic;
+  margin: 0;
+  padding: 0.2em 0.5em;
+  color: #352e5c;
+  font-size: 2vw; /* taille en viewport width */
+}
+
+
+/* Description */
+#country-desc {
+  font-weight: normal;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  font-size: 1.7vw; /* taille en viewport width */
+}
+

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Praktikum Farah GHERIR</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+
+    h1 {
+      color: #2e4b75;
+    }
+
+    svg {
+      background: #cce0ff;
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    .marker {
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .marker.hidden {
+      opacity: 0.3;
+    }
+
+    #info {
+      margin-top: 1.5rem;
+      color: #2e4b75;
+    }
+    svg {
+      background: #cce0ff;
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+    .marker {
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+    .marker.hidden {
+      opacity: 0.3;
+    }
+    #info {
+      margin-top: 1rem;
+      color: #2e4b75;
+    }
+</style>
+</head>
+
+<body>
+    <header>
+        <!-- Haupttitel unten mittig im Banner -->
+        <div class="header-title">
+            <h1 class="site-title">Internationale Erfahrung</h1> <!-- Zentrierter Titel auf Deutsch -->
+        </div>
+        <!-- Name "Farah GHERIR" oben links -->
+        <div class="header-left">
+            <h2 class="name">Farah GHERIR</h2> <!-- Name kursiv und klein -->
+        </div>
+    
+        <!-- Menü mit Sprachlogos links -->
+        <div class="header-right">
+            <div class="language-menu">
+                <a href="intern.html">
+                    <img src="fr.jpg" alt="Französisch" class="language-logo">
+                </a>
+                <a href="intern_en.html">
+                    <img src="en.jpg" alt="Englisch" class="language-logo">
+                </a>
+                <a href="intern_de.html">
+                    <img src="ge.jpg" alt="Deutsch" class="language-logo">
+                </a>
+            </div>
+
+    
+            <!-- Dropdown-Menü -->
+            <div class="menu">
+                <div class="menu-icon">☰</div> <!-- Menü-Symbol -->
+                <ul class="menu-list">
+                    <li><a href="index_de.html">Hauptmenü</a></li>
+                    <li><a href="projets_de.html">Projekte</a></li>
+                    <li><a href="intern_de.html">Internationale Erfahrungen</a></li>
+                    <li><a href="cv_de.html">Lebenslauf</a></li>
+                    <li><a href="contact_de.html">Kontakt</a></li>
+                </ul>
+            </div>
+        </div>
+    
+    </header>
+
+    
+
+  <section id="intern" class="intern">
+    <div id="erasmus-globe-section"> <!-- HINZUGEFÜGT -->
+      <div class="globe-container">
+        
+        <svg id="globe" viewBox="0 0 300 300"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink">
+          <circle cx="150" cy="150" r="100" fill="#2e4b75"  />
+
+          <image class="marker" data-country="germany" xlink:href="ge.jpg" width="50" height="40" />
+          <image class="marker" data-country="italy" xlink:href="it.jpg" width="50" height="40" />
+          <image class="marker" data-country="france" xlink:href="fr.jpg" width="50" height="40" />
+          <image class="marker" data-country="switzerland" xlink:href="sw.jpg" width="50" height="40" />
+        </svg>
+
+        
+
+      </div>
+      
+      <div class="info-container"> <!-- TEXT -->
+        <h2 id="country-name">Klicke auf eine Flagge</h2>
+        <p id="country-desc"></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+        <p>&copy; 2025 Farah GHERIR. Alle Rechte vorbehalten.</p>
+  </footer>
+</body>
+
+  <script>
+  const R = 100;
+  const centerX = 150;
+  const centerY = 150;
+
+  const experiences = [
+    { 
+      id: 'germany', 
+      lat: 30, 
+      lon: 0, 
+      name: ' Deutschland ', 
+      description: "Ich habe einen 3-monatigen Schüleraustausch in Deutschland gemacht, das Abitur bestanden und so Konversationsdeutsch gelernt." 
+    },
+    { 
+      id: 'italy', 
+      lat: -30, 
+      lon: 90, 
+      name: ' Italien ', 
+      description: "Ich habe ein 6-monatiges Erasmus am Politecnico di Milano während meines Doppelmasters gemacht. Dabei habe ich vor allem mein Englisch verbessert, mehr als mein Italienisch, aber ich habe die italienische Kultur entdeckt." 
+    },
+    { 
+      id: 'france', 
+      lat: 30, 
+      lon: 180, 
+      name: ' Frankreich ', 
+      description: "Französisch ist meine Muttersprache. Ich habe hier alle meine Studien absolviert und gelebt." 
+    },
+    { 
+      id: 'switzerland', 
+      lat: -30, 
+      lon: -90, 
+      name: ' Schweiz ', 
+      description: "Ich habe ein 6-monatiges Praktikum im deutschsprachigen Teil der Schweiz gemacht, umgeben von wunderschönen Berglandschaften." 
+    }
+  ];
+
+
+  function latLonToXYZ(lat, lon, radius) {
+    const latRad = lat * Math.PI / 180;
+    const lonRad = lon * Math.PI / 180;
+    const x = radius * Math.cos(latRad) * Math.cos(lonRad);
+    const y = radius * Math.sin(latRad);
+    const z = radius * Math.cos(latRad) * Math.sin(lonRad);
+    return { x, y, z };
+  }
+
+  function rotateY(point, angleDeg) {
+    const angleRad = angleDeg * Math.PI / 180;
+    const cosA = Math.cos(angleRad);
+    const sinA = Math.sin(angleRad);
+    return {
+      x: point.x * cosA + point.z * sinA,
+      y: point.y,
+      z: -point.x * sinA + point.z * cosA,
+    };
+  }
+
+  function project(point3D) {
+    return {
+      cx: centerX + point3D.x,
+      cy: centerY - point3D.y,
+    };
+  }
+
+  function updateMarkersPositions(angle) {
+    experiences.forEach((exp) => {
+      const marker = document.querySelector(`.marker[data-country="${exp.id}"]`);
+      const xyz = latLonToXYZ(exp.lat, exp.lon, R);
+      const rotated = rotateY(xyz, angle);
+      const pos2D = project(rotated);
+
+      if (marker.tagName.toLowerCase() === 'circle') {
+        marker.setAttribute('cx', pos2D.cx);
+        marker.setAttribute('cy', pos2D.cy);
+      } else if (marker.tagName.toLowerCase() === 'image') {
+        const w = parseFloat(marker.getAttribute('width'));
+        const h = parseFloat(marker.getAttribute('height'));
+        marker.setAttribute('x', pos2D.cx - w / 2);
+        marker.setAttribute('y', pos2D.cy - h / 2);
+      }
+
+      if (rotated.z < 0) {
+        marker.classList.add('hidden');
+      } else {
+        marker.classList.remove('hidden');
+      }
+    });
+  }
+
+  let rotation = 0;
+  const normalSpeed = 0.1;  // langsame Drehung
+  const fastSpeed = 5;      // schnelle Drehung
+  let currentSpeed = normalSpeed;
+
+  let targetCountry = null;  // Land, auf das schnell gedreht wird
+  let stopTimeout = null;    // Timer für 3 Sekunden Pause
+
+  function animate() {
+    if (targetCountry) {
+      const exp = experiences.find(e => e.id === targetCountry);
+      if (exp) {
+        const desiredAngle = (exp.lon - 90 + 360) % 360;
+
+        let diff = (desiredAngle - rotation + 360) % 360;
+        if (diff > 180) diff -= 360;
+
+        if (Math.abs(diff) <= currentSpeed) {
+          rotation = desiredAngle;
+          currentSpeed = 0;
+
+          if (!stopTimeout) {
+            stopTimeout = setTimeout(() => {
+              currentSpeed = normalSpeed;
+              targetCountry = null;
+              stopTimeout = null;
+            }, 1000);
+          }
+        } else {
+          rotation = (rotation + Math.sign(diff) * currentSpeed + 360) % 360;
+        }
+      }
+    } else {
+      rotation = (rotation + currentSpeed) % 360;
+    }
+
+    updateMarkersPositions(rotation);
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  const countryNameEl = document.getElementById('country-name');
+  const countryDescEl = document.getElementById('country-desc');
+
+  document.querySelectorAll('.marker').forEach(marker => {
+    marker.addEventListener('click', () => {
+      const countryId = marker.dataset.country;
+      const exp = experiences.find(e => e.id === countryId);
+      if (exp) {
+        countryNameEl.innerHTML = exp.name;
+        countryDescEl.textContent = exp.description;
+
+        targetCountry = countryId;
+        currentSpeed = fastSpeed;
+
+        if (stopTimeout) {
+          clearTimeout(stopTimeout);
+          stopTimeout = null;
+        }
+      }
+    });
+  });
+</script>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Projets - Farah GHERIR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Farah GHERIR</h1>
+        </div>
+        <div class="header-center">
+            <h2 class="site-title">Mes Projets</h2>
+        </div>
+        <div class="header-right">
+            <div class="language-menu">
+                <a href="projets.html">
+                    <img src="fr.jpg" alt="Français" class="language-logo">
+                </a>
+                <a href="projets_en.html">
+                    <img src="en.jpg" alt="English" class="language-logo">
+                </a>
+                <a href="projets_de.html">
+                    <img src="ge.jpg" alt="Deutsch" class="language-logo">
+                </a>
+            </div>
+            <div class="menu">
+                <div class="menu-icon">☰</div> <!-- Icône du menu -->
+                <ul class="menu-list">
+                    <li><a href="index.html">Menu principal</a></li>
+                    <li><a href="projets.html">Projets</a></li>
+                    <li><a href="intern.html">Expériences internationales</a></li>
+                    <li><a href="cv.html">CV</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section id="projets">
+        <h2>Mes Projets</h2>
+
+        <div class="projet">
+            <div class="date-projet">2025</div>
+            <h3>Projet 1 - Imove (Lake Lucerne Institute)</h3>
+            <p>
+            Ce projet vise à évaluer les déficits moteurs du haut du corps chez des patients post-AVC en analysant leurs mouvements lors d'une tâche de prise de boisson. L’objectif est d’améliorer la rééducation personnalisée grâce à une segmentation précise des mouvements. 
+            </p>
+
+            <h4>Étapes :</h4>
+            <ul class="steps-list">
+                <li>✔️ Revue bibliographique approfondie sur l’analyse du mouvement et les troubles moteurs post-AVC.</li>
+                <li>✔️ Développement en Python d’un pipeline pour segmenter les mouvements en primitives motrices.</li>
+                <li>✔️ Création d’une interface graphique Python pour faciliter la segmentation manuelle des vidéos de l’expérience.</li>
+                <li>✔️ Évaluation d’une métrique basée sur cette segmentation pour quantifier la performance des patients.</li>
+            </ul>
+
+        </div>
+        <div class="projet">
+            <div class="date-projet">2025</div>
+            <h3>Projet 2 - Ultrasound Image Quality Assessment Based on Confidence Map (Politecnico di Milano)</h3>
+            <p>
+                Projet réalisé durant mon Erasmus au Politecnico di Milano, visant à établir une carte de confiance (confidence map) pour des images ultrasonores acquises par une main robotisée sur un sujet. L’objectif est d’évaluer la qualité de l’image et de quantifier la perte d’information causée par le downsampling.
+            </p>
+            <h4>Étapes :</h4>
+            <ul class="steps-list">
+                <li>✔️ Acquisition des images ultrasonores à partir de la main robotisée.</li>
+                <li>✔️ Calcul de la confidence map pour chaque image.</li>
+                <li>✔️ Application du downsampling pour réduire la résolution des images.</li>
+                <li>✔️ Calcul de similarité afin d’évaluer l’impact du downsampling sur la perte de données.</li>
+            </ul>
+            <div class="video-container" style="text-align: center; margin-top: 1rem; display: block;">
+                <video width="600" controls style="display: block; margin: 0 auto;">
+                    <source src="video_optimization.mp4" type="video/mp4">
+                </video>
+                <p style="font-style: italic; color: #555; margin-top: 0.5rem; text-align: center;">
+                    À gauche : vidéo en temps réel ultrasonore — À droite : calcul de la confidence map réalisé
+                </p>
+            </div>
+
+
+        </div>
+
+
+        <div class="projet">
+            <div class="date-projet">2024</div>
+            <h3>Projet 3 - Milken ( INSERM )</h3>
+            <p>
+                Ce projet consiste à analyser les signaux EEG multicanaux enregistrés chez des souris modèles atteintes de SLA, grâce à des capteurs posés sur leur crâne pendant plusieurs jours. L’objectif est de mieux comprendre les altérations neurologiques liées à la SLA, en améliorant la qualité du signal et en développant des outils d’analyse performants.
+            </p>
+            <h4>Étapes :</h4>
+            <ul class="steps-list">
+                <li>✔️ Analyse des signaux EEG multicanaux enregistrés chez des souris modèles atteintes de SLA, via des capteurs posés sur leur crâne pendant plusieurs jours.</li>
+                <li>✔️ Prétraitement des données EEG brutes pour améliorer la qualité du signal.</li>
+                <li>✔️ Étude des signaux EEG pour mieux comprendre les altérations neurologiques liées à la SLA.</li>
+                <li>✔️ Développement d’outils en Python pour faciliter l’analyse et l’interprétation des données sur Matlab.</li>
+            </ul>
+
+            <!-- Image responsive -->
+            <div class="image-container" style="text-align:center; margin-top:1rem;">
+                <img src="courbes_projet2.jpg" alt="" style="max-width: 100%; height: 50vh; border-radius: 8px;">
+                <p style="font-style: italic; color: #555; margin-top: 0.5rem;">Visualisation des différentes bandes de fréquence EEG (delta, theta, alpha, beta) extraites des enregistrements chez des souris modèles SLA et réalisées pendant le projet.</p>
+            </div>
+        </div>
+
+
+        <div class="projet">
+            <div class="date-projet">2023</div>
+
+            <h3>Projet 4 - VRgoCapt ( Virtfac, laboratoire Icube, Strasbourg )</h3>
+
+            <p>
+                Travail en collaboration avec l'équipe projet dans le cadre du développement de <strong>VRgoCapt</strong>, un ensemble de capteurs innovants pour la sécurité au travail.
+            </p>
+
+            <div class="project-content">
+                <div class="steps-container">
+                <h4>Étapes :</h4>
+                <ul class="steps-list">
+                    <li>✔️ Conception 3D de la boîte principale du système sur SolidWorks.</li>
+                    <li>✔️ Réalisation du schéma électronique du système avec EasyEDA.</li>
+                    <li>✔️ Soudure et sertissage des câbles pour l'assemblage des composants.</li>
+                    <li>✔️ Tests et validation du prototype final.</li>
+                </ul>
+                <p><strong>Site du projet :</strong> 
+                    <a href="https://lnkd.in/ep7Mmrjk" target="_blank">https://lnkd.in/ep7Mmrjk</a>
+                </p>
+                </div>
+
+                <div class="project-video-wrapper" style="display: inline-block; text-align: center; margin-top: 1rem;">
+                <video controls style="width: 100%; border-radius: 8px; display: block;">
+                    <source src="video_projet2.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la vidéo HTML5.
+                </video>
+                <p style="margin-top: 0.5rem; font-style: italic; color: #666666;">
+                    Équipement final en fonctionnement
+                </p>
+            </div>
+
+
+            </div>
+
+            <div class="project-image-container2" style="margin-top: 1rem;">
+                <img src="photo_projet22.jpg" alt="Image centrale" style="width: 100%; border-radius: 8px; max-width: 500px; display: block; margin: 0 auto;">
+                <p class="image-description">Prototype final de la boîte principale de l'équipement final du projet réalisé</p>
+            </div>
+
+
+            </div>
+
+
+        <div class="projet">
+            <div class="date-projet">2019</div>
+            <h3>Projet 4 - Étude des Propriétés Mécaniques d'une Membrane ( Icube )</h3>
+            <p>
+                Une analyse détaillée a été réalisée afin de comprendre le comportement mécanique d’une membrane soumise à différentes contraintes, avec pour objectif de caractériser ses propriétés physiques et sa résistance.
+            </p>
+            <h4>Étapes :</h4>
+            <ul class="steps-list">
+                <li>✔️ Configuration initiale du programme pour permettre le traitement des données expérimentales.</li>
+                <li>✔️ Amélioration de la qualité des images obtenues afin de faciliter l’analyse précise des déformations.</li>
+                <li>✔️ Réalisation des calculs de volume et de courbure pour quantifier les variations mécaniques de la membrane.</li>
+                <li>✔️ Analyse approfondie des résultats pour interpréter le comportement physique et identifier les caractéristiques clés.</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Farah GHERIR. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>
